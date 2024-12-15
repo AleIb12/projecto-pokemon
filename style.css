@@ -1,0 +1,266 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
+
+:root {
+    --vivid-sky-blue: #56cbf9ff;
+    --auburn: #a62639ff;
+    --emerald: #06d6a0ff;
+    --indigo-dye: #08415cff;
+    --lavender-pink: #fab2eaff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.section {
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#buscador {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Header Styles */
+header.section {
+    background-color: var(--indigo-dye);
+    padding: 1.5rem;
+}
+
+.input {
+    max-width: 500px;
+    margin: 0 auto;
+    display: block;
+    transition: box-shadow 0.3s ease;
+}
+
+.input:focus {
+    box-shadow: 0 0 0 2px var(--emerald);
+}
+
+/* Filter Buttons */
+#filtro-tipos {
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #ddd;
+    transition: 0.3s;
+}
+
+.buttons button.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button {
+    background-color: var(--vivid-sky-blue);
+    color: white;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    background-color: var(--emerald);
+    color: white;
+}
+
+.button.is-primary {
+    background-color: var(--emerald);
+}
+
+/* Cards Container */
+#contenedor-cartas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card Styles */
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.card-image {
+    background-color: var(--lavender-pink);
+    padding: 1rem;
+}
+
+.card-image img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.card-content {
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.title.is-4 {
+    color: var(--indigo-dye);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle.is-6 {
+    color: var(--auburn);
+    font-size: 0.9rem;
+}
+
+.pokemon-card {
+    perspective: 1000px;
+}
+
+.card-inner {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-inner:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.pokemon-card img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.pokemon-card h2 {
+    color: black;
+    margin-bottom: 10px;
+}
+
+.types {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.type {
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-transform: capitalize;
+    color: black; /* Añadimos esta línea para hacer el texto negro */
+}
+
+/* Colores por tipo */
+.normal { background-color: #A8A878; }
+.grass { background-color: #78C850; }
+.fire { background-color: #F08030; }
+.water { background-color: #6890F0; }
+.electric { background-color: #F8D030; }
+.psychic { background-color: #F85888; }
+.fighting { background-color: #C03028; }
+.dragon { background-color: #7038F8; }
+
+.stats {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.stats p {
+    margin: 5px 0;
+    color: black;
+}
+
+.description {
+    color: black;
+    margin: 10px 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--indigo-dye);
+    color: white;
+    padding: 1.5rem;
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .buttons {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+    
+    #contenedor-cartas {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #contenedor-cartas {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-image {
+        height: 200px;
+    }
+}

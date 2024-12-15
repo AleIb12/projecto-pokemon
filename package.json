@@ -1,0 +1,12 @@
+{
+  "name": "projecto-pokemon",
+  "version": "1.0.0",
+  "type": "module",
+
+  "dependencies": {
+    "pokemontcgsdk": "^1.1.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.16"
+  }
+}

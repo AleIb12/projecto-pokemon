@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokémon Cards</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Barra de búsqueda -->
+    <header class="section">
+        <div class="container">
+            <input type="text" id="buscador" placeholder="Buscar Pokémon...">
+        </div>
+    </header>
+
+    <!-- Filtros de tipo -->
+    <nav id="filtro-tipos" class="section">
+        <div class="buttons">
+            <button class="active" data-type="all">Todos</button>
+            <button data-type="grass">Planta</button>
+            <button data-type="fire">Fuego</button>
+            <button data-type="water">Agua</button>
+            <button data-type="electric">Eléctrico</button>
+            <button data-type="psychic">Psíquico</button>
+            <button data-type="fighting">Lucha</button>
+            <button data-type="dragon">Dragón</button>
+        </div>
+    </nav>
+
+    <main id="contenedor-cartas">
+        <!-- Las cartas se añadirán aquí -->
+    </main>
+
+    <script>
+        let allPokemons = [];
+        const TOTAL_POKEMONS = 151; // Limitamos a la primera generación
+
+        async function cargarPokemon(id) {
+            const [pokemonData, speciesData] = await Promise.all([
+                fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json()),
+                fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then(res => res.json())
+            ]);
+            
+            // Obtener la descripción en español
+            const descripcion = speciesData.flavor_text_entries
+                .find(entry => entry.language.name === "es")?.flavor_text
+                .replace(/\f/g, ' ') || "Descripción no disponible";
+            
+            return { ...pokemonData, descripcion };
+        }
+
+        async function cargarPokemons() {
+            try {
+                const promises = [];
+                for (let i = 1; i <= TOTAL_POKEMONS; i++) {
+                    promises.push(cargarPokemon(i));
+                }
+                allPokemons = await Promise.all(promises);
+                mostrarPokemons(allPokemons);
+            } catch (error) {
+                console.error('Error al cargar los Pokémon:', error);
+            }
+        }
+
+        function mostrarPokemons(pokemons) {
+            const contenedor = document.getElementById('contenedor-cartas');
+            contenedor.innerHTML = '';
+
+            pokemons.forEach(pokemon => {
+                const carta = document.createElement('div');
+                carta.className = 'pokemon-card';
+                carta.innerHTML = `
+                    <div class="card-inner ${pokemon.types[0].type.name}">
+                        <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
+                        <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+                        <div class="types">
+                            ${pokemon.types.map(type => 
+                                `<span class="type ${type.type.name}">${type.type.name}</span>`
+                            ).join('')}
+                        </div>
+                        <p class="description">${pokemon.descripcion}</p>
+                        <div class="stats">
+                            <p>HP: ${pokemon.stats[0].base_stat}</p>
+                            <p>Attack: ${pokemon.stats[1].base_stat}</p>
+                            <p>Defense: ${pokemon.stats[2].base_stat}</p>
+                        </div>
+                    </div>
+                `;
+                contenedor.appendChild(carta);
+            });
+        }
+
+        // Función de búsqueda
+        document.getElementById('buscador').addEventListener('input', (e) => {
+            const busqueda = e.target.value.toLowerCase();
+            const pokemonsFiltrados = allPokemons.filter(pokemon => 
+                pokemon.name.toLowerCase().includes(busqueda)
+            );
+            mostrarPokemons(pokemonsFiltrados);
+        });
+
+        // Filtrado por tipo
+        document.querySelectorAll('#filtro-tipos button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const tipo = e.target.dataset.type;
+                document.querySelectorAll('#filtro-tipos button').forEach(btn => 
+                    btn.classList.remove('active'));
+                e.target.classList.add('active');
+
+                const pokemonsFiltrados = tipo === 'all' 
+                    ? allPokemons 
+                    : allPokemons.filter(pokemon => 
+                        pokemon.types.some(t => t.type.name === tipo)
+                    );
+                mostrarPokemons(pokemonsFiltrados);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', cargarPokemons);
+    </script>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            &copy; 2024 Jose Alejandro Ibarra Bello
+            <!--Esta es la prueba de mi existencia-->
+            <!--El mundo es un lugar Hermoso, Nunca lo dudes vales mucho-->
+            <!--Cada persona traza su propio destino, tanto tus fracasos como tus exitos son fruto de tu esfuerzo-->
+            <!--Este comentario va para todas las personas que lo necesiten-->
+        </div>
+    </footer>
+</body>
+</html>
