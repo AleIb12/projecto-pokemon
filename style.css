@@ -220,6 +220,7 @@ header.section {
 .rock { background-color: #776A3E; } /* Gris intenso para tipo roca */
 .ice { background-color: #98D8D8; } /* Azul claro para tipo hielo */
 .poison { background-color: #8B008B; } /* Violeta intenso para tipo veneno */
+.ghost { background-color: #4B0082; } /* Añadido: Color índigo oscuro para tipo fantasma */
 
 .stats {
     text-align: left;
