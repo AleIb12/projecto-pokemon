@@ -221,6 +221,7 @@ header.section {
 .ice { background-color: #98D8D8; } /* Azul claro para tipo hielo */
 .poison { background-color: #8B008B; } /* Violeta intenso para tipo veneno */
 .ghost { background-color: #4B0082; } /* Añadido: Color índigo oscuro para tipo fantasma */
+.fairy { background-color: #FFB7FA; } /* Rosa claro para tipo hada */
 
 .stats {
     text-align: left;
