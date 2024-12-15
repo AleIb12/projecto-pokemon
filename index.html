@@ -18,6 +18,11 @@
         <div class="buttons">
             <button class="active" data-type="all">Todos</button>
             <button data-type="grass">Planta</button>
+            <button data-type="bug">Bicho</button>
+            <button data-type="ground">Tierra</button>
+            <button data-type="rock">Roca</button>
+            <button data-type="ice">Hielo</button>
+            <button data-type="poison">Veneno</button>
             <button data-type="fire">Fuego</button>
             <button data-type="water">Agua</button>
             <button data-type="electric">Eléctrico</button>
@@ -26,7 +31,7 @@
             <button data-type="dragon">Dragón</button>
         </div>
     </nav>
-
+<!-- madre mia como me complico la vida a veces pero sin dificultad la vida no tiene sentido xd-->
     <main id="contenedor-cartas">
         <!-- Las cartas se añadirán aquí -->
     </main>
@@ -56,6 +61,8 @@
                     promises.push(cargarPokemon(i));
                 }
                 allPokemons = await Promise.all(promises);
+                // Ordenar alfabéticamente por nombre
+                allPokemons.sort((a, b) => a.name.localeCompare(b.name));
                 mostrarPokemons(allPokemons);
             } catch (error) {
                 console.error('Error al cargar los Pokémon:', error);

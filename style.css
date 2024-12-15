@@ -63,6 +63,7 @@ header.section {
     padding: 1rem;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
+/*Soy una maquina xd, soy la mismisima percepcion de la perfección*/
 
 .buttons {
     display: flex;
@@ -214,6 +215,11 @@ header.section {
 .psychic { background-color: #F85888; }
 .fighting { background-color: #C03028; }
 .dragon { background-color: #7038F8; }
+.bug { background-color: #A8E65C; } /* Verde más claro que planta */
+.ground { background-color: #94502D; } /* Marrón intenso */
+.rock { background-color: #776A3E; } /* Gris intenso para tipo roca */
+.ice { background-color: #98D8D8; } /* Azul claro para tipo hielo */
+.poison { background-color: #8B008B; } /* Violeta intenso para tipo veneno */
 
 .stats {
     text-align: left;
@@ -240,7 +246,7 @@ header.section {
     margin-top: auto;
 }
 
-/* Responsive Design */
+
 @media screen and (max-width: 768px) {
     .buttons {
         justify-content: flex-start;
