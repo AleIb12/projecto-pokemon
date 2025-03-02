@@ -1,4 +1,5 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 :root {
     --vivid-sky-blue: #56cbf9ff;
@@ -6,6 +7,8 @@
     --emerald: #06d6a0ff;
     --indigo-dye: #08415cff;
     --lavender-pink: #fab2eaff;
+    --card-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
+    --card-hover-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
 
 * {
@@ -14,13 +17,30 @@
     box-sizing: border-box;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes glowing {
+    0% { box-shadow: 0 0 5px rgba(86, 203, 249, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(86, 203, 249, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(86, 203, 249, 0.5); }
+}
+
 body {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
     min-height: 100vh;
-    background-color: #f5f5f5;
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #2d3436;
 }
 
 .section {
@@ -30,20 +50,37 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
 }
 
 #buscador {
     width: 100%;
-    padding: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 12px 20px;
     font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#buscador:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 3px var(--emerald), 0 4px 20px rgba(0, 0, 0, 0.15);
+    outline: none;
 }
 
 /* Header Styles */
 header.section {
-    background-color: var(--indigo-dye);
-    padding: 1.5rem;
+    background: rgba(8, 65, 92, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .input {
@@ -59,21 +96,19 @@ header.section {
 
 /* Filter Buttons */
 #filtro-tipos {
-    background-color: white;
-    padding: 1rem;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
 }
-/*Soy una maquina xd, soy la mismisima percepcion de la perfección*/
 
 .buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 0.8rem;
 }
 
 .buttons button {
@@ -91,15 +126,38 @@ header.section {
 }
 
 .button {
-    background-color: var(--vivid-sky-blue);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: rgba(86, 203, 249, 0.9);
     color: white;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .button:hover {
-    transform: translateY(-2px);
-    background-color: var(--emerald);
-    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(45deg);
+    transition: 0.5s;
+}
+
+.button:hover::after {
+    left: 100%;
 }
 
 .button.is-primary {
@@ -109,13 +167,10 @@ header.section {
 /* Cards Container */
 #contenedor-cartas {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    perspective: 1000px;
 }
 
 /* Card Styles */
@@ -163,47 +218,80 @@ header.section {
 
 .pokemon-card {
     perspective: 1000px;
+    animation: fadeIn 0.6s ease-out;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .card-inner {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 25px;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--card-shadow);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    animation: float 6s ease-in-out infinite;
 }
 
 .card-inner:hover {
-    transform: translateY(-10px);
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    transform: rotateY(5deg) rotateX(5deg);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-inner:hover::before {
+    opacity: 1;
 }
 
 .pokemon-card img {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 15px;
+    width: 180px;
+    height: 180px;
+    margin-bottom: 20px;
+    transition: transform 0.5s ease;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
 }
 
-.pokemon-card h2 {
-    color: black;
-    margin-bottom: 10px;
+.pokemon-card:hover img {
+    transform: scale(1.1) translateY(-10px);
 }
 
 .types {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
-    margin-bottom: 15px;
+    margin: 15px 0;
 }
 
 .type {
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 2px;
+    padding: 8px 16px;
+    border-radius: 20px;
     font-size: 0.9em;
     text-transform: capitalize;
-    color: black; /* Añadimos esta línea para hacer el texto negro */
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.type:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* Colores por tipo */
@@ -224,51 +312,77 @@ header.section {
 .fairy { background-color: #FFB7FA; } /* Rosa claro para tipo hada */
 
 .stats {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    backdrop-filter: blur(5px);
     text-align: left;
-    margin-top: 15px;
 }
 
 .stats p {
-    margin: 5px 0;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
     color: black;
 }
 
 .description {
-    color: black;
-    margin: 10px 0;
-    font-size: 0.9em;
-    line-height: 1.4;
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #2d3436;
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
 }
 
 /* Footer */
 .footer {
-    background-color: var(--indigo-dye);
+    background: rgba(8, 65, 92, 0.95);
+    backdrop-filter: blur(10px);
     color: white;
-    padding: 1.5rem;
+    padding: 2rem;
     margin-top: auto;
+    text-align: center;
 }
-
 
 @media screen and (max-width: 768px) {
     .buttons {
         justify-content: flex-start;
         overflow-x: auto;
-        padding-bottom: 0.5rem;
+        padding-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
     }
     
     #contenedor-cartas {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-        padding: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .pokemon-card img {
+        width: 150px;
+        height: 150px;
     }
 }
 
 @media screen and (max-width: 480px) {
     #contenedor-cartas {
         grid-template-columns: 1fr;
+        padding: 1rem;
     }
     
-    .card-image {
-        height: 200px;
+    .button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+    
+    #buscador {
+        font-size: 14px;
+        padding: 10px 15px;
     }
 }
