@@ -1,12 +1,14 @@
 # Pokémon Cards Viewer
 
-Una aplicación web que muestra información sobre los Pokémon de la primera generación, con capacidades de búsqueda y filtrado por tipo.
+Una aplicación web que muestra información sobre los Pokémon de la primera generación, con capacidades de búsqueda y filtrado por tipo. Desarrollada con React, Material-UI y React Query.
 
 ## Características
 
 - Visualización de cartas de Pokémon con diseño responsivo
 - Búsqueda de Pokémon por nombre
 - Filtrado por tipo de Pokémon
+- Modo claro/oscuro integrado
+- Animaciones suaves y efectos visuales
 - Muestra información detallada incluyendo:
   - Imagen oficial del Pokémon
   - Nombre
@@ -16,17 +18,20 @@ Una aplicación web que muestra información sobre los Pokémon de la primera ge
 
 ## Tecnologías Utilizadas
 
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-- PokeAPI para obtener los datos de los Pokémon
+- React 18
+- Material-UI 5
+- React Query para gestión de datos
+- Framer Motion para animaciones
+- PokeAPI para datos de Pokémon
+- Vite como herramienta de construcción
 
 ## Cómo Usar
 
-1. Abre el archivo `index.html` en tu navegador web
-2. Utiliza la barra de búsqueda en la parte superior para buscar Pokémon por nombre
-3. Usa los botones de filtro para mostrar Pokémon de un tipo específico
-4. Haz clic en "Todos" para ver todos los Pokémon nuevamente
+1. Instala las dependencias con `npm install`
+2. Inicia la aplicación con `npm run dev`
+3. Utiliza la barra de búsqueda en la parte superior para buscar Pokémon por nombre
+4. Usa los botones de filtro para mostrar Pokémon de un tipo específico
+5. Haz clic en el botón de sol/luna para cambiar entre modo claro y oscuro
 
 ## API Utilizada
 
@@ -36,13 +41,13 @@ Este proyecto utiliza la [PokeAPI](https://pokeapi.co/) para obtener toda la inf
 - Descripciones en español
 - Estadísticas
 
-## Autor
+## Autora
 
-Ale Ibarra Bello
+Alisha Ibarra
 
 ## Licencia
 
-© 2024 Jose Alejandro Ibarra Bello. Todos los derechos reservados.
+© 2024 Alisha Ibarra. Todos los derechos reservados.
 
 ## Dedicatoria especial
-- Al final del codigo hay unas palabras que me gustaria que toda persona que se sienta desanimada lea.
+- Al final del código hay unas palabras que me gustaría que toda persona que se sienta desanimada lea.
