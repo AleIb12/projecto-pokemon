@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <title>Pokeball</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle fill="#FFFFFF" cx="128" cy="128" r="128"></circle>
+        <g transform="translate(8.000000, 8.000000)">
+            <path d="M120,240 C186.274,240 240,186.274 240,120 C240,53.726 186.274,0 120,0 C53.726,0 0,53.726 0,120 C0,186.274 53.726,240 120,240 Z" fill="#F44336" fill-rule="nonzero"></path>
+            <path d="M120,240 L120,0 C53.726,0 0,53.726 0,120 C0,186.274 53.726,240 120,240 Z" fill="#D32F2F" fill-rule="nonzero"></path>
+            <circle fill="#F5F5F5" cx="120" cy="120" r="90"></circle>
+            <path d="M120,210 C169.706,210 210,169.706 210,120 L120,120 L120,210 Z" fill="#E0E0E0" fill-rule="nonzero"></path>
+            <circle fill="#212121" cx="120" cy="120" r="30"></circle>
+            <circle fill="#FAFAFA" cx="120" cy="120" r="20"></circle>
+            <path d="M140,120 C140,131.046 131.046,140 120,140 L120,120 L140,120 Z" fill="#EEEEEE" fill-rule="nonzero"></path>
+            <path d="M120,100 C108.954,100 100,108.954 100,120 L120,120 L120,100 Z" fill="#212121" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>
