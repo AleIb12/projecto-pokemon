@@ -1,53 +1,53 @@
-# Pokémon Cards Viewer
+# 💖✨ Visor de Cartitas Pokémon ✨💖
 
-Una aplicación web que muestra información sobre los Pokémon de la primera generación, con capacidades de búsqueda y filtrado por tipo. Desarrollada con React, Material-UI y React Query.
+¡Holi! (≧∇≦)/ Esta es una app web súper cuqui para ver la info de los Pokémon de la primera generación. ¡Puedes buscar a tus amiguitos Pokémon y filtrarlos por su tipo! Está hecha con mucho amor usando React, Material-UI y React Query. 🌸
 
-## Características
+## 🎀 Cositas que Hace 🎀
 
-- Visualización de cartas de Pokémon con diseño responsivo
-- Búsqueda de Pokémon por nombre
-- Filtrado por tipo de Pokémon
-- Modo claro/oscuro integrado
-- Animaciones suaves y efectos visuales
-- Muestra información detallada incluyendo:
-  - Imagen oficial del Pokémon
-  - Nombre
-  - Tipos
-  - Descripción en español
-  - Estadísticas básicas (HP, Ataque, Defensa)
+*   🃏 Muestra cartitas Pokémon que se ven lindas en cualquier pantalla (¡responsive!).
+*   🔍 Busca a tus Pokémon favoritos por su nombrecito. ¡Pika Pika!
+*   💧🔥🌿 Filtra por tipo de Pokémon. ¡Encuentra a los de agua, fuego, planta y más!
+*   ☀️🌙 Cambia entre modo día (clarito) y noche (oscurito). ¡Como por arte de magia!
+*   💫 ¡Animaciones suavecitas y efectos visuales que te harán decir "awww"!
+*   ℹ️ Muestra detalles súper importantes:
+    *   📸 ¡La fotito oficial del Pokémon!
+    *   📛 Su nombre adorable.
+    *   ✨ Sus tipos (¡como Fuego 🔥 o Agua 💧!).
+    *   🇪🇸 Una descripción en español para que sepas más de ellos.
+    *   📊 Sus estadísticas básicas (HP ❤️, Ataque ⚔️, Defensa 🛡️).
 
-## Tecnologías Utilizadas
+## 🛠️ Herramientas Mágicas Usadas 🛠️
 
-- React 18
-- Material-UI 5
-- React Query para gestión de datos
-- Framer Motion para animaciones
-- PokeAPI para datos de Pokémon
-- Vite como herramienta de construcción
+*   React 18 (¡la base de nuestra magia! ✨)
+*   Material-UI 5 (¡para que todo se vea bonito! 💅)
+*   React Query (¡maneja los datos como un campeón! 🏆)
+*   Framer Motion (¡para esas animaciones tan chulas! 🪄)
+*   PokeAPI (¡nuestra Pokédex secreta! 🤫)
+*   Vite (¡hace que todo funcione rapidísimo! 🚀)
 
-## Cómo Usar
+## 🚀 ¿Cómo Empezar la Aventura? 🚀
 
-1. Instala las dependencias con `npm install`
-2. Inicia la aplicación con `npm run dev`
-3. Utiliza la barra de búsqueda en la parte superior para buscar Pokémon por nombre
-4. Usa los botones de filtro para mostrar Pokémon de un tipo específico
-5. Haz clic en el botón de sol/luna para cambiar entre modo claro y oscuro
+1.  Abre tu terminal mágica y escribe `npm install` para conseguir todas las cositas necesarias. 📦
+2.  Luego, escribe `npm run dev` para que la app cobre vida. ¡Abracadabra! ✨
+3.  Usa la barrita de búsqueda de arriba para encontrar a ese Pokémon que tienes en mente. 🤔
+4.  ¡Toca los botoncitos de tipo para ver solo los Pokémon de esa clase! 👇
+5.  Haz clic en el solecito ☀️ o la lunita 🌙 para cambiar los colores de la app. ¡Qué divertido!
 
-## API Utilizada
+## 🌐 API Mágica 🌐
 
-Este proyecto utiliza la [PokeAPI](https://pokeapi.co/) para obtener toda la información de los Pokémon, incluyendo:
-- Datos básicos del Pokémon
-- Imágenes oficiales
-- Descripciones en español
-- Estadísticas
+Este proyectito usa la increíble [PokeAPI](https://pokeapi.co/) para conseguir toda la información de nuestros amigos Pokémon, como:
+*   Sus datos básicos.
+*   Sus fotitos oficiales.
+*   Descripciones en español.
+*   ¡Y sus estadísticas!
 
-## Autora
+## 👩‍💻 Creadora 👩‍💻
 
-Alisha Ibarra
+Alisha Ibarra (¡Holi! 👋)
 
-## Licencia
+## 📜 Licencia 📜
 
-© 2024 Alisha Ibarra. Todos los derechos reservados.
+© 2024 Alisha Ibarra. ¡Todos los derechos reservados! (づ｡◕‿‿◕｡)づ
 
-## Dedicatoria especial
-- Al final del código hay unas palabras que me gustaría que toda persona que se sienta desanimada lea.
+## 💖 Dedicatoria Especial 💖
+*   Al final del código hay unas palabritas llenas de cariño para cualquiera que necesite un poquito de ánimo. ¡Nunca te rindas! 💪🌟
