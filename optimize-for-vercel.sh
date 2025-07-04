@@ -24,8 +24,8 @@ echo "🧹 Limpiando cache..."
 rm -rf node_modules package-lock.json
 npm cache clean --force
 
-echo "📦 Instalando dependencias..."
-npm install
+echo "📦 Instalando dependencias con configuración legacy..."
+npm install --legacy-peer-deps
 
 # Verificar que el build funcione
 echo "🔨 Probando build..."

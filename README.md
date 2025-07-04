@@ -126,12 +126,19 @@ El proyecto incluye un archivo `vercel.json` optimizado con:
 - `vite.config.js` - Build optimizado
 - `DEPLOYMENT.md` - Guía detallada de despliegue
 - `optimize-for-vercel.sh` - Script de optimización
+- `.npmrc` - Configuración de npm para compatibilidad
 
 ### 🔧 **Variables de Entorno** (Opcional)
 ```env
 # No se requieren variables de entorno
 # La PokeAPI es pública y no requiere API keys
 ```
+
+### 🛠️ **Solución de Problemas**
+Si encuentras errores de dependencias en Vercel:
+1. **Conflictos de versiones**: El proyecto usa `--legacy-peer-deps` para compatibilidad
+2. **Build errors**: Vercel usa automáticamente la configuración en `vercel.json`
+3. **Dependencias MUI**: Se han sincronizado las versiones de Material-UI v5
 
 ## 📱 Guía de Uso
 
@@ -183,6 +190,14 @@ El proyecto incluye un archivo `vercel.json` optimizado con:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
+### ☕ **Apóyame**
+
+Si te gusta este proyecto y quieres apoyar mi trabajo:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/ali.ibarra)
+
+Tu apoyo me ayuda a seguir creando proyectos increíbles y mantener todo el contenido gratuito. ¡Cada café cuenta! ☕✨
+
 ## 👩‍💻 Desarrolladora
 
 **Alisha Ibarra** - *Desarrolladora Frontend & UI/UX Designer*
@@ -192,6 +207,7 @@ El proyecto incluye un archivo `vercel.json` optimizado con:
 - 📸 **Instagram**: [@ali.ibarrabello](https://instagram.com/ali.ibarrabello)
 - 💼 **LinkedIn**: [Alisha Ibarra](https://linkedin.com/in/alisha-ibarra)
 - 📧 **Email**: alisha.ibarra@email.com
+- ☕ **Buy Me a Coffee**: [ali.ibarra](https://buymeacoffee.com/ali.ibarra)
 
 ### 🎯 **Especialidades**
 - React & Modern JavaScript

@@ -12,6 +12,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
+import LocalCafeIcon from '@mui/icons-material/LocalCafe';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const ImpactFooter = ({ darkMode }) => {
     { icon: InstagramIcon, href: 'https://instagram.com/ali.ibarrabello', label: 'Instagram' },
     { icon: LinkedInIcon, href: 'https://www.linkedin.com/in/alisha-ibarra-bello-4526561b6', label: 'LinkedIn' },
     { icon: EmailIcon, href: 'mailto:ibarrabelloalisha@gmail.com', label: 'Email' },
+    { icon: LocalCafeIcon, href: 'https://buymeacoffee.com/ali.ibarra', label: 'Buy Me a Coffee' },
   ];
 
   return (
@@ -222,13 +224,31 @@ const ImpactFooter = ({ darkMode }) => {
                         transition: 'all 0.3s ease',
                         '&:hover': {
                           background: 'rgba(255, 255, 255, 0.2)',
-                          borderColor: '#4ECDC4',
-                          color: '#4ECDC4',
-                          boxShadow: '0 0 20px rgba(78, 205, 196, 0.3)'
+                          borderColor: social.label === 'Buy Me a Coffee' ? '#FFDD00' : '#4ECDC4',
+                          color: social.label === 'Buy Me a Coffee' ? '#FFDD00' : '#4ECDC4',
+                          boxShadow: social.label === 'Buy Me a Coffee' 
+                            ? '0 0 20px rgba(255, 221, 0, 0.3)'
+                            : '0 0 20px rgba(78, 205, 196, 0.3)'
                         }
                       }}
                     >
-                      <social.icon />
+                      {social.label === 'Buy Me a Coffee' ? (
+                        <motion.div
+                          animate={{ 
+                            scale: [1, 1.1, 1],
+                            rotate: [0, 5, -5, 0]
+                          }}
+                          transition={{ 
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        >
+                          <social.icon />
+                        </motion.div>
+                      ) : (
+                        <social.icon />
+                      )}
                     </IconButton>
                   </motion.div>
                 ))}

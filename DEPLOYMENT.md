@@ -108,15 +108,21 @@ npm run build
 npm run preview
 ```
 
+### Error: "ERESOLVE could not resolve"
+Este error de dependencias está solucionado con:
+- **Versiones sincronizadas**: Material-UI v5 con Material Icons v5
+- **Configuración legacy**: `.npmrc` con `legacy-peer-deps=true`
+- **Vercel config**: `installCommand` con `--legacy-peer-deps`
+
 ### Error: "Route not found"
 - Verifica que `vercel.json` esté presente
 - Confirma las rewrites para SPA routing
 
 ### Error: "Dependencies"
 ```bash
-# Limpia cache y reinstala
+# Limpia cache y reinstala con configuración legacy
 rm -rf node_modules package-lock.json
-npm install
+npm install --legacy-peer-deps
 ```
 
 ## 📊 Métricas de Performance
