@@ -1,22 +1,22 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 
 const types = [
-  { id: 'all', name: 'Todos' },
-  { id: 'grass', name: 'Planta' },
-  { id: 'bug', name: 'Bicho' },
-  { id: 'ground', name: 'Tierra' },
-  { id: 'rock', name: 'Roca' },
-  { id: 'ice', name: 'Hielo' },
-  { id: 'poison', name: 'Veneno' },
-  { id: 'ghost', name: 'Fantasma' },
-  { id: 'fairy', name: 'Hada' },
-  { id: 'fire', name: 'Fuego' },
-  { id: 'water', name: 'Agua' },
-  { id: 'electric', name: 'Eléctrico' },
-  { id: 'psychic', name: 'Psíquico' },
-  { id: 'fighting', name: 'Lucha' },
-  { id: 'dragon', name: 'Dragón' }
+  { id: 'all', name: 'Todos', icon: '🌟' },
+  { id: 'grass', name: 'Planta', icon: '🌿' },
+  { id: 'bug', name: 'Bicho', icon: '🐛' },
+  { id: 'ground', name: 'Tierra', icon: '🗿' },
+  { id: 'rock', name: 'Roca', icon: '🪨' },
+  { id: 'ice', name: 'Hielo', icon: '❄️' },
+  { id: 'poison', name: 'Veneno', icon: '☠️' },
+  { id: 'ghost', name: 'Fantasma', icon: '👻' },
+  { id: 'fairy', name: 'Hada', icon: '🧚' },
+  { id: 'fire', name: 'Fuego', icon: '🔥' },
+  { id: 'water', name: 'Agua', icon: '💧' },
+  { id: 'electric', name: 'Eléctrico', icon: '⚡' },
+  { id: 'psychic', name: 'Psíquico', icon: '🔮' },
+  { id: 'fighting', name: 'Lucha', icon: '👊' },
+  { id: 'dragon', name: 'Dragón', icon: '🐉' }
 ];
 
 const typeColors = {
@@ -35,26 +35,40 @@ const typeColors = {
   poison: '#8B008B',
   ghost: '#4B0082',
   fairy: '#FFB7FA',
-  all: '#06d6a0'
+  all: '#FF6B6B'
 };
 
 export const TypeFilter = ({ selectedType, onTypeSelect, darkMode }) => {
   return (
     <Box
       sx={{
-        backgroundColor: darkMode ? 'rgba(30, 30, 30, 0.7)' : 'rgba(255, 255, 255, 0.7)',
+        background: darkMode 
+          ? 'rgba(255, 255, 255, 0.1)'
+          : 'rgba(255, 255, 255, 0.8)',
         backdropFilter: 'blur(10px)',
-        padding: 3,
-        borderRadius: 2,
-        marginBottom: 4,
-        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+        borderRadius: 3,
+        p: 3,
+        mb: 4,
+        boxShadow: 3,
       }}
     >
+      <Typography
+        variant="h6"
+        sx={{
+          textAlign: 'center',
+          mb: 3,
+          fontWeight: 600,
+          color: 'text.primary'
+        }}
+      >
+        Filtrar por Tipo
+      </Typography>
+      
       <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: 1,
+          gap: 2,
           justifyContent: 'center',
         }}
       >
@@ -68,20 +82,29 @@ export const TypeFilter = ({ selectedType, onTypeSelect, darkMode }) => {
               variant={selectedType === type.id ? "contained" : "outlined"}
               onClick={() => onTypeSelect(type.id)}
               sx={{
-                borderRadius: '20px',
+                borderRadius: 20,
                 textTransform: 'none',
                 px: 2,
-                backgroundColor: selectedType === type.id ? typeColors[type.id] : 'transparent',
+                py: 1,
+                minWidth: 100,
+                backgroundColor: selectedType === type.id 
+                  ? typeColors[type.id] 
+                  : 'transparent',
                 borderColor: typeColors[type.id],
                 color: selectedType === type.id ? 'white' : typeColors[type.id],
+                fontWeight: 600,
                 '&:hover': {
                   backgroundColor: typeColors[type.id],
                   color: 'white',
-                  borderColor: typeColors[type.id],
+                  transform: 'translateY(-2px)',
                 },
+                transition: 'all 0.3s ease'
               }}
             >
-              {type.name}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <span>{type.icon}</span>
+                <span>{type.name}</span>
+              </Box>
             </Button>
           </motion.div>
         ))}

@@ -1,6 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { Box, Card, CardContent, CardMedia, Typography, Grid, Chip, Skeleton } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Typography, Grid, Chip, Skeleton, LinearProgress } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FlashOnIcon from '@mui/icons-material/FlashOn';
+import ShieldIcon from '@mui/icons-material/Shield';
 
 const TOTAL_POKEMONS = 151;
 
@@ -36,15 +40,17 @@ const typeColors = {
 };
 
 const PokemonCard = ({ pokemon, darkMode }) => {
+  const [isHovered, setIsHovered] = useState(false);
   const mainType = pokemon.types[0].type.name;
   
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
       whileHover={{ y: -10 }}
       transition={{ duration: 0.3 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
       <Card
         sx={{
@@ -52,22 +58,12 @@ const PokemonCard = ({ pokemon, darkMode }) => {
           display: 'flex',
           flexDirection: 'column',
           background: darkMode 
-            ? `linear-gradient(145deg, ${typeColors[mainType]}11 0%, ${typeColors[mainType]}33 100%)`
-            : `linear-gradient(145deg, ${typeColors[mainType]}22 0%, ${typeColors[mainType]}44 100%)`,
-          borderRadius: 4,
-          boxShadow: 3,
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-            background: darkMode ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(5px)',
-          }
+            ? `linear-gradient(145deg, ${typeColors[mainType]}20 0%, ${typeColors[mainType]}40 100%)`
+            : `linear-gradient(145deg, ${typeColors[mainType]}30 0%, ${typeColors[mainType]}50 100%)`,
+          borderRadius: 3,
+          boxShadow: isHovered ? `0 10px 30px ${typeColors[mainType]}40` : 3,
+          transition: 'all 0.3s ease',
+          border: `2px solid ${typeColors[mainType]}60`,
         }}
       >
         <CardMedia
@@ -81,10 +77,22 @@ const PokemonCard = ({ pokemon, darkMode }) => {
             filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))',
           }}
         />
-        <CardContent sx={{ flexGrow: 1, position: 'relative', zIndex: 1 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ textTransform: 'capitalize', fontWeight: 600 }}>
+        
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography 
+            variant="h6" 
+            component="h2" 
+            gutterBottom 
+            sx={{ 
+              textTransform: 'capitalize', 
+              fontWeight: 600,
+              textAlign: 'center',
+              mb: 2
+            }}
+          >
             {pokemon.name}
           </Typography>
+          
           <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
             {pokemon.types.map((type) => (
               <Chip
@@ -94,26 +102,43 @@ const PokemonCard = ({ pokemon, darkMode }) => {
                   backgroundColor: typeColors[type.type.name],
                   color: 'white',
                   textTransform: 'capitalize',
+                  fontWeight: 500
                 }}
               />
             ))}
           </Box>
-          <Typography variant="body2" color={darkMode ? "rgba(255, 255, 255, 0.7)" : "text.secondary"} sx={{ mb: 2 }}>
-            {pokemon.descripcion}
-          </Typography>
-          <Box 
+          
+          <Typography 
+            variant="body2" 
             sx={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              mt: 'auto',
-              backgroundColor: darkMode ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.5)',
-              p: 1.5,
-              borderRadius: 2
+              mb: 2, 
+              textAlign: 'center',
+              color: 'text.secondary',
+              fontSize: '0.9rem'
             }}
           >
-            <Typography variant="body2">HP: {pokemon.stats[0].base_stat}</Typography>
-            <Typography variant="body2">ATK: {pokemon.stats[1].base_stat}</Typography>
-            <Typography variant="body2">DEF: {pokemon.stats[2].base_stat}</Typography>
+            {pokemon.descripcion}
+          </Typography>
+          
+          <Box sx={{ mt: 'auto' }}>
+            <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>
+              Estadísticas:
+            </Typography>
+            
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <FavoriteIcon sx={{ fontSize: 14, color: '#FF6B6B' }} />
+                <Typography variant="body2">HP: {pokemon.stats[0].base_stat}</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <FlashOnIcon sx={{ fontSize: 14, color: '#FFD700' }} />
+                <Typography variant="body2">ATK: {pokemon.stats[1].base_stat}</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <ShieldIcon sx={{ fontSize: 14, color: '#4ECDC4' }} />
+                <Typography variant="body2">DEF: {pokemon.stats[2].base_stat}</Typography>
+              </Box>
+            </Box>
           </Box>
         </CardContent>
       </Card>
@@ -142,26 +167,47 @@ export const PokemonList = ({ searchTerm, selectedType, darkMode }) => {
 
   if (isLoading) {
     return (
-      <Grid container spacing={3}>
-        {[...Array(12)].map((_, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Skeleton variant="rectangular" height={400} sx={{ 
-              borderRadius: 2,
-              bgcolor: darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
-            }} />
-          </Grid>
-        ))}
-      </Grid>
+      <Box>
+        <Typography variant="h6" sx={{ mb: 3, textAlign: 'center' }}>
+          Cargando Pokémon...
+        </Typography>
+        <Grid container spacing={3}>
+          {[...Array(12)].map((_, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Skeleton 
+                variant="rectangular" 
+                height={400} 
+                sx={{ borderRadius: 2 }} 
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     );
   }
 
   return (
-    <Grid container spacing={3}>
-      {filteredPokemons.map((pokemon) => (
-        <Grid item xs={12} sm={6} md={4} key={pokemon.name}>
-          <PokemonCard pokemon={pokemon} darkMode={darkMode} />
-        </Grid>
-      ))}
-    </Grid>
+    <Box>
+      <Typography 
+        variant="h6" 
+        sx={{ 
+          mb: 3, 
+          textAlign: 'center',
+          color: 'text.secondary'
+        }}
+      >
+        {filteredPokemons.length === 0 
+          ? 'No se encontraron Pokémon' 
+          : `${filteredPokemons.length} Pokémon encontrados`}
+      </Typography>
+      
+      <Grid container spacing={3}>
+        {filteredPokemons.map((pokemon) => (
+          <Grid item xs={12} sm={6} md={4} key={pokemon.name}>
+            <PokemonCard pokemon={pokemon} darkMode={darkMode} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
