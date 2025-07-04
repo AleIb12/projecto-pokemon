@@ -6,6 +6,8 @@
 ![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
 ![Vite](https://img.shields.io/badge/Vite-Latest-purple?style=for-the-badge&logo=vite)
 ![Material-UI](https://img.shields.io/badge/MUI-5-blue?style=for-the-badge&logo=mui)
+![Vercel](https://img.shields.io/badge/Vercel-Deploy-black?style=for-the-badge&logo=vercel)
+![Live Demo](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge&logo=vercel)
 
 ## 🎯 Características Premium
 
@@ -50,6 +52,12 @@
 - **Responsive Design** - Mobile-first approach
 - **Custom Scrollbars** - Elementos UI personalizados
 
+### 🚀 **Despliegue & Hosting**
+- **Vercel** - Plataforma de despliegue optimizada
+- **GitHub Actions** - CI/CD automático
+- **CDN Global** - Distribución mundial ultra-rápida
+- **Edge Functions** - Rendimiento optimizado
+
 ## � Instalación y Uso
 
 ### 📋 **Requisitos Previos**
@@ -79,6 +87,50 @@ npm run dev          # Desarrollo local
 npm run build        # Build de producción
 npm run preview      # Preview del build
 npm run lint         # Análisis de código
+npm run start        # Inicia servidor de preview
+npm run vercel-build # Build optimizado para Vercel
+```
+
+## 🚀 Despliegue en Vercel
+
+### 🌐 **Deploy Rápido**
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/AleIb12/projecto-pokemon)
+
+### 📋 **Pasos para Desplegar**
+1. **Fork el repositorio** en tu cuenta de GitHub
+2. **Conecta con Vercel**:
+   - Ve a [vercel.com](https://vercel.com)
+   - Importa tu proyecto desde GitHub
+   - Vercel detectará automáticamente la configuración de Vite
+3. **Configuración automática**:
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+   - Framework: Vite
+4. **¡Deploy!** - Tu Pokédex estará live en segundos
+
+### ⚙️ **Configuración Vercel**
+El proyecto incluye un archivo `vercel.json` optimizado con:
+- **SPA Routing**: Redirecciones para React Router
+- **Headers de Seguridad**: Protección XSS y Content-Type
+- **Optimización**: Chunking automático y caching
+- **Performance**: Build optimizado para producción
+
+### 🔧 **Optimizaciones Incluidas**
+- **Code Splitting**: Chunks separados para vendor, MUI y utils
+- **Asset Optimization**: Compresión gzip automática
+- **Tree Shaking**: Eliminación de código no utilizado
+- **Cache Strategy**: Headers optimizados para CDN
+
+### 📁 **Archivos de Configuración**
+- `vercel.json` - Configuración de Vercel
+- `vite.config.js` - Build optimizado
+- `DEPLOYMENT.md` - Guía detallada de despliegue
+- `optimize-for-vercel.sh` - Script de optimización
+
+### 🔧 **Variables de Entorno** (Opcional)
+```env
+# No se requieren variables de entorno
+# La PokeAPI es pública y no requiere API keys
 ```
 
 ## 📱 Guía de Uso
@@ -106,12 +158,20 @@ npm run lint         # Análisis de código
 - [ ] Modo batalla simulado
 - [ ] Integración con PWA
 - [ ] Sonidos temáticos
+- [ ] Analytics con Vercel Analytics
+- [ ] Optimización SEO completa
 
-## 🎨 Capturas de Pantalla
+## 🎨 Demo en Vivo
 
-> **Modo Claro**: Diseño limpio y moderno con glassmorphism
-> **Modo Oscuro**: Experiencia nocturna elegante y sofisticada
-> **Responsive**: Perfecta adaptación a todos los dispositivos
+🌐 **Ver Demo**: [pokédex-premium.vercel.app](https://pokédex-premium.vercel.app)
+
+> **Nota**: Reemplaza la URL con tu dominio de Vercel una vez desplegado
+
+### 📱 **Capturas de Pantalla**
+- **🌅 Modo Claro**: Diseño limpio y moderno con glassmorphism
+- **🌙 Modo Oscuro**: Experiencia nocturna elegante y sofisticada
+- **📱 Responsive**: Perfecta adaptación a todos los dispositivos
+- **⚡ Performance**: Carga ultra-rápida con Vercel Edge Network
 
 ## 🤝 Contribución
 
@@ -146,6 +206,7 @@ npm run lint         # Análisis de código
 - **Material-UI Team** - Por el excelente sistema de diseño
 - **React Community** - Por el increíble ecosistema
 - **Vite Team** - Por la herramienta de build ultra-rápida
+- **Vercel** - Por la plataforma de despliegue excepcional
 
 ## 📄 Licencia
 
