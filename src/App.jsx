@@ -17,7 +17,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const queryClient = new QueryClient();
 
-// Componente Footer Impactante
+// Componente Footer Impactante Pixel Art
 const ImpactFooter = ({ darkMode }) => {
   const socialLinks = [
     { icon: GitHubIcon, href: 'https://github.com/AleIb12', label: 'GitHub' },
@@ -30,59 +30,39 @@ const ImpactFooter = ({ darkMode }) => {
   return (
     <Box
       component="footer"
+      className="pixel-border"
       sx={{
         position: 'relative',
         background: darkMode 
-          ? 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)'
-          : 'linear-gradient(135deg, #2d3436 0%, #636e72 100%)',
-        color: 'white',
+          ? 'linear-gradient(145deg, #111, #000)'
+          : 'linear-gradient(145deg, #333, #222)',
+        color: '#FFD700',
         py: 8,
         overflow: 'hidden',
+        borderRadius: 0,
         '&::before': {
           content: '""',
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
-          height: '3px',
-          background: 'linear-gradient(90deg, #FF6B6B, #4ECDC4, #FFD700, #FF6B6B)',
-          backgroundSize: '300% 100%',
-          animation: 'gradientMove 4s ease-in-out infinite',
-          '@keyframes gradientMove': {
-            '0%': { backgroundPosition: '0% 0%' },
-            '50%': { backgroundPosition: '100% 0%' },
-            '100%': { backgroundPosition: '0% 0%' }
-          }
+          height: '4px',
+          background: 'repeating-linear-gradient(90deg, #FF6B6B 0px, #FF6B6B 10px, #4ECDC4 10px, #4ECDC4 20px, #FFD700 20px, #FFD700 30px)',
+          animation: 'pixelScan 4s linear infinite',
         }
       }}
     >
-      {/* Elementos flotantes de fondo */}
+      {/* Partículas pixeladas de fondo */}
       <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}>
-        {[...Array(8)].map((_, i) => (
-          <motion.div
+        {[...Array(6)].map((_, i) => (
+          <div
             key={i}
+            className="pixel-particles"
             style={{
               position: 'absolute',
-              width: 40 + Math.random() * 20,
-              height: 40 + Math.random() * 20,
-              borderRadius: '50%',
-              background: `linear-gradient(45deg, ${
-                ['#FF6B6B', '#4ECDC4', '#FFD700', '#FF6B6B'][Math.floor(Math.random() * 4)]
-              }20, transparent)`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              opacity: 0.1
-            }}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, 20, 0],
-              rotate: [0, 180, 360],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{
-              duration: 8 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 3
+              animationDelay: `${Math.random() * 3}s`
             }}
           />
         ))}
@@ -105,17 +85,39 @@ const ImpactFooter = ({ darkMode }) => {
                 >
                   <CatchingPokemonIcon sx={{ fontSize: 50, mr: 2, color: '#FFD700' }} />
                 </motion.div>
-                <Typography variant="h4" sx={{ fontWeight: 800, color: '#FFD700' }}>
+                <Typography 
+                  variant="h4" 
+                  className="pixel-text"
+                  sx={{ 
+                    color: '#FFD700',
+                    fontSize: { xs: '1rem', md: '1.5rem' }
+                  }}
+                >
                   PokéDex
                 </Typography>
               </Box>
-              <Typography variant="body1" sx={{ mb: 3, opacity: 0.9, lineHeight: 1.6 }}>
-                La mejor experiencia para descubrir y explorar el fascinante mundo de los Pokémon. 
-                Construido con amor y tecnología moderna.
+              <Typography 
+                variant="body1" 
+                className="pixel-text"
+                sx={{ 
+                  mb: 3, 
+                  opacity: 0.9, 
+                  lineHeight: 1.6,
+                  fontSize: { xs: '0.6rem', md: '0.8rem' }
+                }}
+              >
+                Retro Pokémon Experience
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Typography variant="body2" sx={{ mr: 1 }}>
-                  Hecho con
+                <Typography 
+                  variant="body2" 
+                  className="pixel-text"
+                  sx={{ 
+                    mr: 1,
+                    fontSize: { xs: '0.5rem', md: '0.6rem' }
+                  }}
+                >
+                  Made with
                 </Typography>
                 <motion.div
                   animate={{ 
@@ -130,8 +132,12 @@ const ImpactFooter = ({ darkMode }) => {
                 >
                   <FavoriteIcon sx={{ color: '#FF6B6B', fontSize: 20, mx: 0.5 }} />
                 </motion.div>
-                <Typography variant="body2">
-                  por Alisha Ibarra
+                <Typography 
+                  variant="body2"
+                  className="pixel-text"
+                  sx={{ fontSize: { xs: '0.5rem', md: '0.6rem' } }}
+                >
+                  by Alisha
                 </Typography>
               </Box>
             </motion.div>
@@ -144,16 +150,23 @@ const ImpactFooter = ({ darkMode }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 3, color: '#4ECDC4' }}>
-                Enlaces Rápidos
+              <Typography 
+                variant="h6" 
+                className="pixel-text"
+                sx={{ 
+                  color: '#4ECDC4', 
+                  mb: 3,
+                  fontSize: { xs: '0.8rem', md: '1rem' }
+                }}
+              >
+                Quick Links
               </Typography>
               <Stack spacing={2}>
                 {[
-                  { text: 'Inicio', href: '#' },
+                  { text: 'Home', href: '#' },
                   { text: 'Pokémon', href: '#pokemon-section' },
-                  { text: 'Acerca de', href: '#' },
-                  { text: 'PokeAPI', href: 'https://pokeapi.co/', external: true },
-                  { text: 'Documentación', href: '#' }
+                  { text: 'About', href: '#' },
+                  { text: 'PokeAPI', href: 'https://pokeapi.co/', external: true }
                 ].map((link, index) => (
                   <motion.div
                     key={link.text}
@@ -164,11 +177,13 @@ const ImpactFooter = ({ darkMode }) => {
                       href={link.href}
                       target={link.external ? '_blank' : '_self'}
                       color="inherit" 
+                      className="pixel-button"
                       sx={{ 
                         textDecoration: 'none',
                         display: 'flex',
                         alignItems: 'center',
                         opacity: 0.8,
+                        fontSize: { xs: '0.5rem', md: '0.6rem' },
                         transition: 'all 0.3s ease',
                         '&:hover': { 
                           opacity: 1,
@@ -177,7 +192,11 @@ const ImpactFooter = ({ darkMode }) => {
                         } 
                       }}
                     >
-                      <Typography variant="body2">
+                      <Typography 
+                        variant="body2"
+                        className="pixel-text"
+                        sx={{ fontSize: { xs: '0.5rem', md: '0.6rem' } }}
+                      >
                         {link.text}
                       </Typography>
                       {link.external && (
@@ -197,11 +216,27 @@ const ImpactFooter = ({ darkMode }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 3, color: '#4ECDC4' }}>
-                Conecta Conmigo
+              <Typography 
+                variant="h6" 
+                className="pixel-text"
+                sx={{ 
+                  color: '#4ECDC4', 
+                  mb: 3,
+                  fontSize: { xs: '0.8rem', md: '1rem' }
+                }}
+              >
+                Connect
               </Typography>
-              <Typography variant="body2" sx={{ mb: 3, opacity: 0.9 }}>
-                Sígueme en mis redes sociales para más proyectos increíbles
+              <Typography 
+                variant="body2" 
+                className="pixel-text"
+                sx={{ 
+                  mb: 3, 
+                  opacity: 0.9,
+                  fontSize: { xs: '0.5rem', md: '0.6rem' }
+                }}
+              >
+                Follow for more projects
               </Typography>
               <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                 {socialLinks.map((social, index) => (
@@ -217,10 +252,12 @@ const ImpactFooter = ({ darkMode }) => {
                     <IconButton
                       href={social.href}
                       target="_blank"
+                      className="pixel-button"
                       sx={{
                         background: 'rgba(255, 255, 255, 0.1)',
                         color: 'white',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        border: '2px solid #333',
+                        borderRadius: 0,
                         transition: 'all 0.3s ease',
                         '&:hover': {
                           background: 'rgba(255, 255, 255, 0.2)',
@@ -257,23 +294,27 @@ const ImpactFooter = ({ darkMode }) => {
           </Grid>
         </Grid>
 
-        {/* Divider con efectos */}
+        {/* Divider con efectos pixelados */}
         <Box sx={{ my: 6, position: 'relative' }}>
-          <Divider sx={{ 
-            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-            height: '1px'
-          }} />
+          <Divider 
+            className="pixel-border-inset"
+            sx={{ 
+              background: 'repeating-linear-gradient(90deg, #333 0px, #333 4px, #555 4px, #555 8px)',
+              height: '4px',
+              borderRadius: 0
+            }} 
+          />
           <Box
+            className="pixel-border"
             sx={{
               position: 'absolute',
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              background: darkMode ? '#1a1a2e' : '#2d3436',
-              px: 3,
+              background: darkMode ? '#111' : '#333',
+              px: 2,
               py: 1,
-              borderRadius: 20,
-              border: '1px solid rgba(255, 255, 255, 0.2)'
+              borderRadius: 0
             }}
           >
             <motion.div
@@ -298,8 +339,16 @@ const ImpactFooter = ({ darkMode }) => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Typography variant="body2" sx={{ opacity: 0.8, textAlign: { xs: 'center', md: 'left' } }}>
-              © 2024 Alisha Ibarra. Todos los derechos reservados.
+            <Typography 
+              variant="body2" 
+              className="pixel-text"
+              sx={{ 
+                opacity: 0.8, 
+                textAlign: { xs: 'center', md: 'left' },
+                fontSize: { xs: '0.5rem', md: '0.6rem' }
+              }}
+            >
+              © 2024 Alisha Ibarra
             </Typography>
           </motion.div>
           
@@ -309,8 +358,15 @@ const ImpactFooter = ({ darkMode }) => {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Typography variant="body2" sx={{ opacity: 0.8 }}>
-                Desarrollado con React, Material-UI & PokeAPI
+              <Typography 
+                variant="body2" 
+                className="pixel-text"
+                sx={{ 
+                  opacity: 0.8,
+                  fontSize: { xs: '0.5rem', md: '0.6rem' }
+                }}
+              >
+                React + MUI + PokeAPI
               </Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>
                 {['⚛️', '🎨', '⚡'].map((emoji, index) => (
@@ -349,12 +405,37 @@ const HeroSection = ({ darkMode, onExplore }) => {
         alignItems: 'center',
         justifyContent: 'center',
         background: darkMode 
-          ? 'linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%)'
-          : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          ? `
+            radial-gradient(circle at 20% 20%, #ff6b6b11 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, #4ecdc411 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, #45b7d111 0%, transparent 50%),
+            #0a0a0a
+          `
+          : `
+            radial-gradient(circle at 20% 20%, #ff6b6b22 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, #4ecdc422 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, #45b7d122 0%, transparent 50%),
+            #1a1a2e
+          `,
         position: 'relative',
         overflow: 'hidden',
       }}
+      className="pixel-bg-pattern"
     >
+      {/* Línea de escaneo retro */}
+      <div className="scan-line" />
+      
+      {/* Partículas pixeladas */}
+      <Box sx={{ position: 'absolute', top: '20%', left: '10%' }}>
+        <div className="pixel-particles" />
+      </Box>
+      <Box sx={{ position: 'absolute', top: '60%', right: '15%' }}>
+        <div className="pixel-particles" style={{animationDelay: '1s'}} />
+      </Box>
+      <Box sx={{ position: 'absolute', top: '40%', left: '80%' }}>
+        <div className="pixel-particles" style={{animationDelay: '2s'}} />
+      </Box>
+
       <Container maxWidth="lg" sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -362,70 +443,102 @@ const HeroSection = ({ darkMode, onExplore }) => {
           transition={{ duration: 1, delay: 0.2 }}
         >
           <Box sx={{ mb: 4 }}>
-            <CatchingPokemonIcon 
-              sx={{ 
-                fontSize: 120, 
-                color: '#FFD700',
-                mb: 2
-              }} 
-            />
+            <motion.div
+              animate={{ 
+                scale: [1, 1.1, 1],
+                rotate: [0, 10, -10, 0]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <CatchingPokemonIcon 
+                sx={{ 
+                  fontSize: 120, 
+                  color: '#FFD700',
+                  mb: 2,
+                  filter: 'drop-shadow(4px 4px 0 rgba(0,0,0,0.5))',
+                  imageRendering: 'pixelated'
+                }} 
+              />
+            </motion.div>
           </Box>
           
           <Typography
             variant="h1"
+            className="pixel-text pixel-text-glow"
             sx={{
-              fontSize: { xs: '3rem', md: '5rem' },
-              fontWeight: 800,
+              fontSize: { xs: '2rem', md: '4rem' },
               color: '#FFD700',
-              mb: 2
+              mb: 2,
+              textTransform: 'uppercase',
+              filter: 'drop-shadow(4px 4px 0 rgba(0,0,0,0.8))'
             }}
           >
-            PokéDex
+            PokéDex Retro
           </Typography>
           
           <Typography
             variant="h4"
+            className="pixel-text"
             sx={{
-              fontSize: { xs: '1.5rem', md: '2rem' },
-              fontWeight: 300,
-              color: 'white',
-              mb: 4
+              fontSize: { xs: '0.8rem', md: '1.2rem' },
+              color: '#4ECDC4',
+              mb: 4,
+              textTransform: 'uppercase',
+              letterSpacing: '3px'
             }}
           >
-            Descubre el mundo de los Pokémon
+            Gotta Catch &#39;Em All!
           </Typography>
           
           <Typography
             variant="body1"
+            className="pixel-text"
             sx={{
-              fontSize: '1.2rem',
+              fontSize: { xs: '0.6rem', md: '0.8rem' },
               color: 'rgba(255,255,255,0.8)',
               mb: 6,
               maxWidth: '600px',
-              mx: 'auto'
+              mx: 'auto',
+              letterSpacing: '1px'
             }}
           >
             Explora la colección completa de Pokémon de la primera generación. 
             Descubre sus habilidades, tipos y estadísticas.
           </Typography>
           
-          <Button
-            variant="contained"
-            size="large"
-            onClick={onExplore}
-            sx={{
-              fontSize: '1.2rem',
-              py: 2,
-              px: 4,
-              borderRadius: 50,
-              bgcolor: '#FF6B6B',
-              '&:hover': {
-                bgcolor: '#FF5252',
-              }
-            }}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            ¡Comenzar Aventura!
-          </Button>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={onExplore}
+              className="pixel-button"
+              sx={{
+                fontSize: { xs: '0.6rem', md: '0.8rem' },
+                py: { xs: 1.5, md: 2 },
+                px: { xs: 3, md: 4 },
+                bgcolor: '#FF6B6B',
+                color: '#fff',
+                border: '4px solid #333',
+                borderRadius: 0,
+                fontFamily: 'Press Start 2P, monospace',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                '&:hover': {
+                  bgcolor: '#FF5252',
+                  transform: 'translate(2px, 2px)',
+                }
+              }}
+            >
+              ¡Start Game!
+            </Button>
+          </motion.div>
         </motion.div>
       </Container>
     </Box>
@@ -471,12 +584,37 @@ function App() {
         main: '#4ECDC4',
       },
       background: {
-        default: darkMode ? '#0a0a0a' : '#f8f9fa',
-        paper: darkMode ? '#1a1a1a' : '#ffffff',
+        default: darkMode ? '#0a0a0a' : '#1a1a2e',
+        paper: darkMode ? '#111' : '#333',
       },
     },
     typography: {
-      fontFamily: "'Poppins', sans-serif",
+      fontFamily: "'Press Start 2P', monospace",
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 0,
+            border: '4px solid #333',
+            fontFamily: "'Press Start 2P', monospace",
+            textTransform: 'uppercase',
+            fontSize: '0.6rem',
+            letterSpacing: '2px',
+          },
+        },
+      },
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '& .MuiOutlinedInput-root': {
+              borderRadius: 0,
+              border: '4px solid #333',
+              fontFamily: "'Press Start 2P', monospace",
+            },
+          },
+        },
+      },
     },
   });
 
@@ -495,37 +633,86 @@ function App() {
 
         <Box
           id="pokemon-section"
+          className="pixel-bg-pattern"
           sx={{
             minHeight: '100vh',
             background: darkMode 
-              ? 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)'
-              : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
-            py: 8
+              ? `
+                radial-gradient(circle at 20% 20%, #ff6b6b11 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, #4ecdc411 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, #45b7d111 0%, transparent 50%),
+                #0a0a0a
+              `
+              : `
+                radial-gradient(circle at 20% 20%, #ff6b6b22 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, #4ecdc422 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, #45b7d122 0%, transparent 50%),
+                #1a1a2e
+              `,
+            py: 8,
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
-          {/* Navbar */}
+          {/* Navbar Pixel Art */}
           <Box
+            className="pixel-border"
             sx={{
               position: 'fixed',
               top: 20,
               left: '50%',
               transform: 'translateX(-50%)',
               zIndex: 1000,
-              background: darkMode ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.9)',
-              backdropFilter: 'blur(20px)',
-              borderRadius: 25,
+              background: darkMode 
+                ? 'linear-gradient(145deg, #222, #111)' 
+                : 'linear-gradient(145deg, #555, #333)',
+              borderRadius: 0,
               px: 3,
-              py: 1,
+              py: 1.5,
               display: 'flex',
               alignItems: 'center',
-              gap: 2
+              gap: 2,
+              animation: 'pixelGlow 3s ease-in-out infinite'
             }}
           >
-            <CatchingPokemonIcon sx={{ color: 'primary.main', fontSize: 30 }} />
-            <Typography variant="h6" sx={{ fontWeight: 600 }}>
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            >
+              <CatchingPokemonIcon 
+                sx={{ 
+                  color: '#FFD700', 
+                  fontSize: 30,
+                  filter: 'drop-shadow(2px 2px 0 rgba(0,0,0,0.5))'
+                }} 
+              />
+            </motion.div>
+            <Typography 
+              variant="h6" 
+              className="pixel-text"
+              sx={{ 
+                color: '#FFD700',
+                fontSize: { xs: '0.6rem', md: '0.8rem' },
+                textTransform: 'uppercase'
+              }}
+            >
               PokéDex
             </Typography>
-            <IconButton onClick={toggleDarkMode} sx={{ ml: 'auto' }}>
+            <IconButton 
+              onClick={toggleDarkMode} 
+              className="pixel-button"
+              sx={{ 
+                ml: 'auto',
+                minWidth: 'auto',
+                padding: '8px',
+                fontSize: '1rem',
+                border: '2px solid #333',
+                bgcolor: darkMode ? '#444' : '#666',
+                '&:hover': {
+                  bgcolor: darkMode ? '#555' : '#777',
+                }
+              }}
+            >
               {darkMode ? '☀️' : '🌙'}
             </IconButton>
           </Box>
@@ -534,24 +721,28 @@ function App() {
             <Box sx={{ textAlign: 'center', mb: 6 }}>
               <Typography
                 variant="h2"
+                className="pixel-text pixel-text-glow"
                 sx={{
-                  fontSize: { xs: '2.5rem', md: '3.5rem' },
-                  fontWeight: 700,
-                  color: 'primary.main',
-                  mb: 2
+                  fontSize: { xs: '1.5rem', md: '2.5rem' },
+                  color: '#4ECDC4',
+                  mb: 2,
+                  textTransform: 'uppercase'
                 }}
               >
-                Explora Pokémon
+                Select Your Pokémon
               </Typography>
               <Typography
                 variant="h6"
+                className="pixel-text"
                 sx={{
-                  color: 'text.secondary',
+                  color: 'rgba(255,255,255,0.8)',
+                  fontSize: { xs: '0.6rem', md: '0.8rem' },
                   maxWidth: '600px',
-                  mx: 'auto'
+                  mx: 'auto',
+                  letterSpacing: '1px'
                 }}
               >
-                Busca, filtra y descubre todos los Pokémon de la primera generación
+                Use Search & Filter System
               </Typography>
             </Box>
             
@@ -561,20 +752,41 @@ function App() {
           </Container>
         </Box>
 
-        {/* Botón de scroll to top */}
+        {/* Botón de scroll to top pixel art */}
         {showScrollTop && (
-          <Fab
-            color="primary"
-            onClick={scrollToTop}
-            sx={{
-              position: 'fixed',
-              bottom: 30,
-              right: 30,
-              zIndex: 1000
-            }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <KeyboardArrowUpIcon />
-          </Fab>
+            <Fab
+              color="primary"
+              onClick={scrollToTop}
+              className="pixel-border"
+              sx={{
+                position: 'fixed',
+                bottom: 30,
+                right: 30,
+                zIndex: 1000,
+                borderRadius: 0,
+                background: 'linear-gradient(145deg, #FF6B6B, #FF5252)',
+                border: '4px solid #333',
+                animation: 'pixelPulse 2s ease-in-out infinite',
+                '&:hover': {
+                  background: 'linear-gradient(145deg, #FF5252, #FF6B6B)',
+                }
+              }}
+            >
+              <KeyboardArrowUpIcon 
+                sx={{ 
+                  color: '#fff',
+                  filter: 'drop-shadow(2px 2px 0 rgba(0,0,0,0.5))'
+                }} 
+              />
+            </Fab>
+          </motion.div>
         )}
 
         {/* Footer Impactante */}
