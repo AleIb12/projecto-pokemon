@@ -3,11 +3,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { PokemonList } from './components/PokemonList';
 import { SearchBar } from './components/SearchBar';
+import { TypeFilter } from './components/TypeFilter';
 import { Container, Box, Typography, IconButton, Button, Fab, Link, Stack, Divider, Grid } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalCafeIcon from '@mui/icons-material/LocalCafe';
@@ -317,6 +319,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
 const ImpactFooter = ({ darkMode }) => {
   const socialLinks = [
     { icon: GitHubIcon, href: 'https://github.com/AleIb12', label: 'GitHub' },
+    { icon: InstagramIcon, href: 'https://instagram.com/ali.ibarrabello', label: 'Instagram' },
     { icon: LinkedInIcon, href: 'https://www.linkedin.com/in/alisha-ibarra-bello-4526561b6', label: 'LinkedIn' },
     { icon: EmailIcon, href: 'mailto:ibarrabelloalisha@gmail.com', label: 'Email' },
     { icon: LocalCafeIcon, href: 'https://buymeacoffee.com/ali.ibarra', label: 'Buy Me a Coffee' },
@@ -866,6 +869,7 @@ const HeroSection = ({ darkMode, onExplore }) => {
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('all');
   const [darkMode, setDarkMode] = useState(false);
   const [showHero, setShowHero] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -1129,7 +1133,8 @@ function App() {
                 </Box>
                 
                 <SearchBar value={searchTerm} onChange={setSearchTerm} darkMode={darkMode} />
-                <PokemonList searchTerm={searchTerm} darkMode={darkMode} />
+                <TypeFilter selectedType={selectedType} onTypeSelect={setSelectedType} darkMode={darkMode} />
+                <PokemonList searchTerm={searchTerm} selectedType={selectedType} darkMode={darkMode} />
               </Container>
             </Box>
 
