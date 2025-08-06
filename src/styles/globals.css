@@ -1,216 +1,245 @@
-/* Estilos globales para efectos pixel art */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+/* Estilos globales para diseño moderno y refinado */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Paleta de colores refinada y moderna */
+  --primary-gold: #F7931E;
+  --primary-coral: #FF6B9D;
+  --primary-teal: #00D4AA;
+  --primary-purple: #8B5FBF;
+  --accent-blue: #4285F4;
+  --accent-orange: #FF8A65;
+  
+  /* Grises elegantes */
+  --dark-bg: #0B0F17;
+  --dark-surface: #151B23;
+  --dark-border: #252B35;
+  --light-gray: #F8FAFC;
+  --medium-gray: #64748B;
+  --text-light: #E2E8F0;
+  --text-dark: #1E293B;
+  
+  /* Variables de texto para modo claro/oscuro */
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  
+  /* Efectos y sombras */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+  --shadow-large: 0 12px 60px rgba(0, 0, 0, 0.2);
+  --shadow-strong: 0 12px 60px rgba(0, 0, 0, 0.16);
+  --glow-primary: 0 0 30px rgba(247, 147, 30, 0.3);
+  --glow-secondary: 0 0 30px rgba(0, 212, 170, 0.3);
+  --glow-gold: 0 0 30px rgba(247, 147, 30, 0.4);
+  --glow-teal: 0 0 30px rgba(0, 212, 170, 0.4);
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
 }
 
 body {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: hidden;
-  background: 
-    radial-gradient(circle at 20% 20%, #ff6b6b22 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, #4ecdc422 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, #45b7d122 0%, transparent 50%),
-    #1a1a2e;
-  background-attachment: fixed;
-  line-height: 1.6;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+  color: var(--text-light);
+  line-height: 1.7;
+  font-weight: 400;
 }
 
-/* Efectos de scroll pixelado */
+/* Efectos de scroll suave y elegante */
 html {
   scroll-behavior: smooth;
 }
 
-/* Scrollbar personalizada estilo retro */
+/* Scrollbar personalizada moderna */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f0f23;
-  border: 2px solid #333;
-  box-shadow: inset 0 0 0 2px #555;
+  background: var(--dark-surface);
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-  border: 2px solid #333;
-  box-shadow: 
-    inset 2px 2px 0 rgba(255, 255, 255, 0.3),
-    inset -2px -2px 0 rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--primary-gold), var(--primary-teal));
+  border-radius: 8px;
+  border: 1px solid var(--dark-border);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #ff5252, #26c6da);
-  box-shadow: 
-    inset 2px 2px 0 rgba(255, 255, 255, 0.5),
-    inset -2px -2px 0 rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, var(--primary-teal), var(--primary-coral));
 }
 
-/* Efectos globales de pixel art */
-.pixel-border {
-  border: 4px solid #333;
-  box-shadow: 
-    inset 2px 2px 0 rgba(255, 255, 255, 0.3),
-    inset -2px -2px 0 rgba(0, 0, 0, 0.3),
-    4px 4px 0 rgba(0, 0, 0, 0.2);
+/* Efectos globales modernos */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: var(--shadow-medium);
 }
 
-.pixel-border-inset {
-  border: 4px solid #333;
-  box-shadow: 
-    inset -2px -2px 0 rgba(255, 255, 255, 0.3),
-    inset 2px 2px 0 rgba(0, 0, 0, 0.3);
+.elegant-border {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
 }
 
-/* Texto pixelado */
-.pixel-text {
-  font-family: 'Press Start 2P', monospace;
+.elegant-border-inset {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Tipografía moderna */
+.elegant-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.display-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.mono-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.text-glow {
   text-shadow: 
-    2px 2px 0 rgba(0, 0, 0, 0.5),
-    1px 1px 0 rgba(255, 255, 255, 0.2);
-  letter-spacing: 2px;
+    0 0 20px currentColor,
+    0 0 40px currentColor,
+    0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.pixel-text-glow {
-  text-shadow: 
-    0 0 5px currentColor,
-    0 0 10px currentColor,
-    0 0 15px currentColor,
-    2px 2px 0 rgba(0, 0, 0, 0.8);
-}
-
-/* Animaciones pixel art */
-@keyframes pixelPulse {
+/* Animaciones suaves y modernas */
+@keyframes smoothPulse {
   0%, 100% { 
     transform: scale(1);
-    filter: brightness(1);
+    opacity: 1;
   }
   50% { 
-    transform: scale(1.05);
-    filter: brightness(1.2);
+    transform: scale(1.02);
+    opacity: 0.9;
   }
 }
 
-@keyframes pixelFloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+@keyframes elegantFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-6px) rotate(1deg); }
+  66% { transform: translateY(-3px) rotate(-1deg); }
 }
 
-@keyframes pixelGlow {
+@keyframes gradientShift {
   0%, 100% { 
-    box-shadow: 
-      0 0 10px rgba(255, 107, 107, 0.5),
-      0 0 20px rgba(78, 205, 196, 0.3),
-      inset 2px 2px 0 rgba(255, 255, 255, 0.3),
-      inset -2px -2px 0 rgba(0, 0, 0, 0.3);
+    background-position: 0% 50%;
   }
   50% { 
-    box-shadow: 
-      0 0 20px rgba(255, 107, 107, 0.8),
-      0 0 40px rgba(78, 205, 196, 0.6),
-      inset 2px 2px 0 rgba(255, 255, 255, 0.5),
-      inset -2px -2px 0 rgba(0, 0, 0, 0.5);
+    background-position: 100% 50%;
   }
 }
 
-@keyframes pixelScan {
+@keyframes shimmer {
   0% { transform: translateX(-100%); }
-  100% { transform: translateX(100vw); }
+  100% { transform: translateX(100%); }
 }
 
-/* Efecto de escaneo retro */
-.scan-line {
-  position: fixed;
+/* Efecto de brillo sutil */
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
-  width: 2px;
-  height: 100vh;
-  background: linear-gradient(to bottom, 
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
     transparent,
-    rgba(0, 255, 0, 0.8),
+    rgba(255, 255, 255, 0.1),
     transparent
   );
-  animation: pixelScan 8s linear infinite;
+  animation: shimmer 3s ease-in-out infinite;
   pointer-events: none;
-  z-index: 9999;
 }
 
-/* Efectos de partículas */
-.pixel-particles {
+/* Partículas flotantes modernas */
+.floating-particles {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #ff6b6b;
-  box-shadow: 
-    8px 8px 0 #4ecdc4,
-    16px 16px 0 #45b7d1,
-    24px 24px 0 #96ceb4,
-    32px 32px 0 #ffeaa7;
-  animation: pixelFloat 3s ease-in-out infinite;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(45deg, var(--primary-gold), var(--primary-teal));
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: elegantFloat 4s ease-in-out infinite;
+  box-shadow: 0 0 10px currentColor;
 }
 
-/* Botones estilo retro */
-.pixel-button {
-  font-family: 'Press Start 2P', monospace;
-  border: 4px solid #333;
-  background: linear-gradient(145deg, #555, #333);
-  color: #fff;
-  padding: 12px 24px;
+/* Botones modernos */
+.modern-button {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
   cursor: pointer;
-  transition: all 0.1s ease;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  box-shadow: 
-    inset 2px 2px 0 rgba(255, 255, 255, 0.3),
-    inset -2px -2px 0 rgba(0, 0, 0, 0.3),
-    4px 4px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, var(--primary-gold), var(--primary-coral));
+  color: white;
+  box-shadow: var(--shadow-soft);
 }
 
-.pixel-button:hover {
-  background: linear-gradient(145deg, #666, #444);
-  transform: translate(2px, 2px);
-  box-shadow: 
-    inset 2px 2px 0 rgba(255, 255, 255, 0.5),
-    inset -2px -2px 0 rgba(0, 0, 0, 0.5),
-    2px 2px 0 rgba(0, 0, 0, 0.3);
+.modern-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  background: linear-gradient(135deg, var(--primary-coral), var(--primary-teal));
 }
 
-.pixel-button:active {
-  transform: translate(4px, 4px);
-  box-shadow: 
-    inset -2px -2px 0 rgba(255, 255, 255, 0.3),
-    inset 2px 2px 0 rgba(0, 0, 0, 0.3);
+.modern-button:active {
+  transform: translateY(0px);
+  box-shadow: var(--shadow-soft);
 }
 
-/* Fondos pixelados */
-.pixel-bg-pattern {
-  background-image: 
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 4px,
-      rgba(255, 255, 255, 0.02) 4px,
-      rgba(255, 255, 255, 0.02) 8px
-    );
+/* Fondos con gradientes sutiles */
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg) 0%,
+    var(--dark-surface) 50%,
+    var(--dark-bg) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease-in-out infinite;
 }
 
 /* Media queries para responsividad */
 @media (max-width: 768px) {
-  .pixel-text {
-    font-size: 8px;
-    letter-spacing: 1px;
+  .elegant-text {
+    font-size: 14px;
+    letter-spacing: -0.005em;
   }
   
-  .pixel-button {
-    padding: 8px 16px;
-    font-size: 8px;
-    letter-spacing: 1px;
+  .modern-button {
+    padding: 12px 24px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  
+  .glass-card {
+    border-radius: 16px;
   }
 }

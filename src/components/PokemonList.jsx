@@ -146,7 +146,7 @@ const PokemonCard = ({ pokemon, darkMode }) => {
   );
 };
 
-export const PokemonList = ({ searchTerm, selectedType, darkMode }) => {
+export const PokemonList = ({ searchTerm, darkMode }) => {
   const { data: pokemons = [], isLoading } = useQuery({
     queryKey: ['pokemons'],
     queryFn: async () => {
@@ -161,8 +161,7 @@ export const PokemonList = ({ searchTerm, selectedType, darkMode }) => {
 
   const filteredPokemons = pokemons.filter(pokemon => {
     const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = selectedType === 'all' || pokemon.types.some(type => type.type.name === selectedType);
-    return matchesSearch && matchesType;
+    return matchesSearch;
   });
 
   if (isLoading) {

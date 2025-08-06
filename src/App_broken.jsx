@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { PokemonList } from './components/PokemonList';
 import { SearchBar } from './components/SearchBar';
+import { TypeFilter } from './components/TypeFilter';
 import { Container, Box, Typography, IconButton, Button, Fab, Link, Stack, Divider, Grid } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -471,7 +472,7 @@ const ImpactFooter = ({ darkMode }) => {
                   { text: 'Pokémon', href: '#pokemon-section' },
                   { text: 'About', href: '#' },
                   { text: 'PokéAPI', href: 'https://pokeapi.co/', external: true }
-                ].map((link) => (
+                ].map((link, index) => (
                   <motion.div
                     key={link.text}
                     whileHover={{ x: 8 }}
@@ -546,7 +547,7 @@ const ImpactFooter = ({ darkMode }) => {
                 Follow for more projects
               </Typography>
               <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                {socialLinks.map((social) => (
+                {socialLinks.map((social, index) => (
                   <motion.div
                     key={social.label}
                     whileHover={{ 
@@ -868,6 +869,7 @@ const HeroSection = ({ darkMode, onExplore }) => {
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('all');
   const [darkMode, setDarkMode] = useState(false);
   const [showHero, setShowHero] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -1131,7 +1133,8 @@ function App() {
                 </Box>
                 
                 <SearchBar value={searchTerm} onChange={setSearchTerm} darkMode={darkMode} />
-                <PokemonList searchTerm={searchTerm} darkMode={darkMode} />
+                <TypeFilter selectedType={selectedType} onTypeSelect={setSelectedType} darkMode={darkMode} />
+                <PokemonList searchTerm={searchTerm} selectedType={selectedType} darkMode={darkMode} />
               </Container>
             </Box>
 
@@ -1175,13 +1178,156 @@ function App() {
                 </Fab>
               </motion.div>
             )}
+          {/* Navbar Moderno */}
+          <Box
+            className="glass-card"
+            sx={{
+              position: 'fixed',
+              top: 20,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 1000,
+              background: 'rgba(26, 32, 56, 0.8)',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '20px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              px: 3,
+              py: 1.5,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+              boxShadow: 'var(--shadow-medium)'
+            }}
+          >
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            >
+              <CatchingPokemonIcon 
+                sx={{ 
+                  color: 'var(--primary-gold)', 
+                  fontSize: 30
+                }} 
+              />
+            </motion.div>
+            <Typography 
+              variant="h6" 
+              className="display-text"
+              sx={{ 
+                color: 'var(--primary-gold)',
+                fontSize: { xs: '1rem', md: '1.2rem' },
+                fontWeight: 600
+              }}
+            >
+              PokéDex
+            </Typography>
+            <IconButton 
+              onClick={toggleDarkMode} 
+              className="glass-card"
+              sx={{ 
+                ml: 'auto',
+                minWidth: 'auto',
+                padding: '10px',
+                fontSize: '1.2rem',
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '12px',
+                color: 'var(--text-primary)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                '&:hover': {
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  transform: 'scale(1.05)'
+                }
+              }}
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </IconButton>
+          </Box>
 
-            {/* Footer Moderno y Elegante */}
-            <ImpactFooter darkMode={darkMode} />
-          </>
+          <Container maxWidth="lg" sx={{ pt: 12 }}>
+            <Box sx={{ textAlign: 'center', mb: 6 }}>
+              <Typography
+                variant="h2"
+                className="display-text text-glow"
+                sx={{
+                  fontSize: { xs: '2rem', md: '3rem' },
+                  color: 'var(--primary-teal)',
+                  mb: 2,
+                  fontWeight: 700,
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                Select Your Pokémon
+              </Typography>
+              <Typography
+                variant="h6"
+                className="elegant-text"
+                sx={{
+                  color: 'var(--text-secondary)',
+                  fontSize: { xs: '1rem', md: '1.2rem' },
+                  maxWidth: '600px',
+                  mx: 'auto',
+                  lineHeight: 1.6,
+                  opacity: 0.9
+                }}
+              >
+                Use our advanced search and filter system to discover your perfect companion
+              </Typography>
+            </Box>
+            
+            <SearchBar value={searchTerm} onChange={setSearchTerm} darkMode={darkMode} />
+            <TypeFilter selectedType={selectedType} onTypeSelect={setSelectedType} darkMode={darkMode} />
+            <PokemonList searchTerm={searchTerm} selectedType={selectedType} darkMode={darkMode} />
+          </Container>
+        </Box>
+
+        {/* Botón de scroll to top moderno */}
+        {showScrollTop && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Fab
+              color="primary"
+              onClick={scrollToTop}
+              className="glass-card"
+              sx={{
+                position: 'fixed',
+                bottom: 30,
+                right: 30,
+                zIndex: 1000,
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, var(--primary-gold), var(--primary-coral))',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(20px)',
+                boxShadow: 'var(--shadow-medium)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, var(--primary-coral), var(--primary-teal))',
+                  boxShadow: 'var(--shadow-large)',
+                  transform: 'translateY(-2px)'
+                }
+              }}
+            >
+              <KeyboardArrowUpIcon 
+                sx={{ 
+                  color: '#fff',
+                  fontSize: 28
+                }} 
+              />
+            </Fab>
+          </motion.div>
         )}
-      </ThemeProvider>
-    </QueryClientProvider>
+
+        {/* Footer Moderno y Elegante */}
+        <ImpactFooter darkMode={darkMode} />
+      </>
+    )}
+  </ThemeProvider>
+</QueryClientProvider>
   );
 }
 
